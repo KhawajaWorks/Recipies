@@ -6,6 +6,10 @@ import '../Data/dummy_data.dart';
 
 class MealDetailSCreen extends StatelessWidget {
   static const routeName = '/meal-detail';
+  final Function toggleFav;
+  final Function isFav;
+
+  MealDetailSCreen(this.toggleFav, this.isFav);
 
   Widget buildSectionTitle(String text, BuildContext context) {
     return Container(
@@ -88,6 +92,13 @@ class MealDetailSCreen extends StatelessWidget {
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          isFav(mealID) ? Icons.star : Icons.star_border,
+          color: Theme.of(context).errorColor,
+        ),
+        onPressed: () => toggleFav(mealID),
       ),
     );
   }
